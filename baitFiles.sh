@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Copyright (c) 2015 Riccardo Gagliarducci <riccardo@brixel.it>
-#https://github.com/canonex/HoneyPot
+#https://github.com/canonex/baitFiles
 
 #This is free software. You may redistribute copies of it under the terms of the GNU General Public License.
 #There is NO WARRANTY, to the extent permitted by law.
@@ -38,7 +38,7 @@ if [ -f "$HASHES" ]; then
 		
 	else
 		echo "$(tput setaf 1)  * "; echo  "  Check failed, stopping all operations"; echo "  * $(tput sgr 0)"
-		logger "HoneyPot.sh | Check failed, stopping all operations $?"
+		logger "baitFiles.sh | Check failed, stopping all operations $?"
 		exit 1
 	fi
 
@@ -47,7 +47,7 @@ else
 
 
 	#Does not exists: let's try to create it
-	logger "HoneyPot.sh | WARNING | Cannot find hashes: let's try to create one based on a file list..."
+	logger "baitFiles.sh | WARNING | Cannot find hashes: let's try to create one based on a file list..."
 	echo "$(tput setaf 3)  * "; echo  "  Cannot find hashes: let's try to create one based on a file list..."; echo "  * $(tput sgr 0)"
 
 	
@@ -67,7 +67,7 @@ else
 			sha256sum "$line" >> "$HASHES"
 		done < "$LIST"
 		
-		logger "HoneyPot.sh | WARNING | List file generated from list file. You should execute again the software to check if everything is correct"
+		logger "baitFiles.sh | WARNING | List file generated from list file. You should execute again the software to check if everything is correct"
 		echo "$(tput setaf 2)  * "; echo  "  List file generated from list file";
 		echo "$(tput setaf 3)  * "; echo "You can generate more complex list by using find, ex. from files named donottouchme.jpg, donottouchme.docx, ecc..."
 		echo "You can generate more complex list by using find, ex. to protect files on your home directory "
@@ -80,7 +80,7 @@ else
 
 	else
 
-		logger "HoneyPot.sh | ERROR | Cannot find file list: please compile list file with your own files"
+		logger "baitFiles.sh | ERROR | Cannot find file list: please compile list file with your own files"
 		echo "$(tput setaf 1)  * "; echo  "  Cannot find file list: please compile list file with your own files"; echo "  * $(tput sgr 0)"
 		
 
@@ -99,7 +99,7 @@ Delete everything else, only the list of files should remain! And leave no blank
 fi
 
 
-logger "HoneyPot.sh | End"
+logger "baitFiles.sh | End"
 
 exit 5
 
